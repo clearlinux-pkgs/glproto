@@ -4,7 +4,7 @@
 #
 Name     : glproto
 Version  : 1.4.17
-Release  : 3
+Release  : 4
 URL      : http://xorg.freedesktop.org/releases/individual/proto/glproto-1.4.17.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/proto/glproto-1.4.17.tar.gz
 Summary  : GL extension headers
