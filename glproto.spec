@@ -4,12 +4,13 @@
 #
 Name     : glproto
 Version  : 1.4.17
-Release  : 6
+Release  : 7
 URL      : http://xorg.freedesktop.org/releases/individual/proto/glproto-1.4.17.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/proto/glproto-1.4.17.tar.gz
 Summary  : GL extension headers
 Group    : Development/Tools
 License  : SGI-B-2.0
+BuildRequires : pkgconfig(xorg-macros)
 
 %description
 OpenGL Extension to the X Window System
@@ -19,6 +20,7 @@ commands to the X server.
 %package dev
 Summary: dev components for the glproto package.
 Group: Development
+Provides: glproto-devel
 
 %description dev
 dev components for the glproto package.
@@ -28,10 +30,15 @@ dev components for the glproto package.
 %setup -q -n glproto-1.4.17
 
 %build
+export LANG=C
 %configure --disable-static
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -48,4 +55,4 @@ rm -rf %{buildroot}
 /usr/include/GL/glxproto.h
 /usr/include/GL/glxtokens.h
 /usr/include/GL/internal/glcore.h
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/pkgconfig/glproto.pc
